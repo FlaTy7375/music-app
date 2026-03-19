@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+примерная структура проекта
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+src/
+├── app/                    # Слой инициализации приложения
+│   ├── providers/          # Провайдеры (Redux, роутер, тема)
+│   ├── routes/             # Роутинг (Next.js App Router)
+│   ├── styles/             # Глобальные стили, тема
+│   └── store/              # Корневой стор (если используешь Redux)
+│
+├── pages/                   # Страницы приложения
+│   ├── home/               # Главная страница
+│   ├── search/             # Страница поиска
+│   ├── library/            # Моя библиотека
+│   ├── playlist/           # Страница плейлиста (динамическая)
+│   ├── album/              # Страница альбома
+│   └── artist/             # Страница артиста
+│
+├── widgets/                 # Крупные составные блоки
+│   ├── player/             # Аудиоплеер (отображается на всех страницах)
+│   ├── sidebar/            # Боковая навигация
+│   ├── header/             # Шапка с поиском и профилем
+│   ├── now-playing-bar/    # Нижняя панель с текущим треком
+│   └── playlist-grid/      # Сетка плейлистов (переиспользуется)
+│
+├── features/                # Пользовательские сценарии (фичи)
+│   ├── play-track/         # Воспроизведение трека
+│   ├── like-track/         # Лайк трека
+│   ├── follow-artist/      # Подписка на артиста
+│   ├── add-to-playlist/    # Добавить в плейлист
+│   ├── search-bar/         # Поисковая строка с логикой
+│   └── create-playlist/    # Создание плейлиста
+│
+├── entities/                # Бизнес-сущности
+│   ├── track/              # Трек
+│   │   ├── api/            # Запросы для треков
+│   │   ├── model/          # Стор, типы, селекторы
+│   │   ├── ui/             # Компоненты: TrackCard, TrackRow
+│   │   └── index.ts        # Публичное API
+│   │
+│   ├── album/              # Альбом
+│   ├── artist/             # Артист
+│   ├── playlist/           # Плейлист
+│   └── user/               # Пользователь
+│
+└── shared/                   # Переиспользуемый код без бизнес-логики
+    ├── ui/                  # UI-кит
+    │   ├── button/          # Кнопка
+    │   ├── input/           # Поле ввода
+    │   ├── slider/          # Ползунок громкости
+    │   ├── icon/            # Иконки
+    │   ├── card/            # Обертка для карточек
+    │   └── loader/          # Загрузчик
+    │
+    ├── lib/                  # Утилиты
+    │   ├── audio/           # Работа с аудио (аудиоконтекст, буферы)
+    │   ├── date/            # Форматирование дат
+    │   ├── number/          # Форматирование чисел (просмотры, длительность)
+    │   └── storage/         # LocalStorage, IndexedDB
+    │
+    ├── api/                  # Базовый API-клиент
+    │   ├── client.ts        # Axios/fetch с интерцепторами
+    │   └── endpoints/       # Конфигурация эндпоинтов
+    │
+    ├── config/               # Конфигурация приложения
+    │   ├── constants.ts     # Константы (API_URL, AUDIO_QUALITY)
+    │   └── feature-flags.ts # Фиче-флаги
+    │
+    └── types/                # Глобальные типы
+        └── api.types.ts     # Общие типы ответов API
